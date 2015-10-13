@@ -1,6 +1,6 @@
 # Mediative SBT Plugins
 
-A collection of opinionated plugins to minimize boilerplate for setting up new
+A collection of opinionated plugins to minimize boilerplate when setting up new
 Mediative SBT projects.
 
 ## Getting Started
