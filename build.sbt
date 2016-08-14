@@ -19,8 +19,7 @@ lazy val oss = project.configure(plugin)
   .settings(
     addSbtPlugin("com.typesafe.sbt"  % "sbt-ghpages" % "0.5.4"),
     addSbtPlugin("me.lessis"         % "bintray-sbt" % "0.3.0"),
-    addSbtPlugin("de.heikoseeberger" % "sbt-header"  % "1.5.0"),
-    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.0")
+    addSbtPlugin("de.heikoseeberger" % "sbt-header"  % "1.5.0")
   )
   .dependsOn(core)
 
