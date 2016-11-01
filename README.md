@@ -8,8 +8,8 @@ Mediative SBT projects.
 To use the plugins add the following to `project/plugins.sbt`:
 
     resolvers += Resolver.url("YPG-Data SBT Plugins", url("https://dl.bintray.com/ypg-data/sbt-plugins"))(Resolver.ivyStylePatterns)
-    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.1.1")
-    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.1.1")
+    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.2.0")
+    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.2.0")
 
 The `sbt-mediative-oss` plugin provides the command `bootstrap-project` to
 help quickly setup a new project:
@@ -37,7 +37,7 @@ This will take care of running tests, tagging and publishing JARs and API docs.
 
 ## License
 
-Copyright 2015 Mediative
+Copyright 2016 Mediative
 
 Licensed under the Apache License, Version 2.0. See LICENSE file for terms and
 conditions for use, reproduction, and distribution.
