@@ -4,7 +4,7 @@ name in ThisBuild         := "sbt-mediative"
 lazy val root = project.in(file("."))
   .enablePlugins(MediativeGitHubPlugin, MediativeReleasePlugin)
   .settings(noPublishSettings)
-  .aggregate(core, oss, devops)
+  .aggregate(core, oss, devops, teamcity)
 
 lazy val core = project.configure(plugin)
   .enablePlugins(MediativeBintrayPlugin)
@@ -27,6 +27,12 @@ lazy val devops = project.configure(plugin)
   .enablePlugins(MediativeBintrayPlugin)
   .settings(
     addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.0.6")
+  )
+
+lazy val teamcity = project.configure(plugin)
+  .enablePlugins(MediativeBintrayPlugin)
+  .settings(
+    addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.6.1")
   )
 
 def plugin(project: Project) =
