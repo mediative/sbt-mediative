@@ -48,7 +48,7 @@ object MediativeProjectPlugin extends AutoPlugin {
   override def buildSettings: Seq[Setting[_]] =
     Seq(
       repoOrganization := "ypg-data",
-      repoName := (name in ThisBuild).value
+      repoName := (baseDirectory in ThisBuild).value.getName
     )
 
   override def projectSettings: Seq[Setting[_]] =
