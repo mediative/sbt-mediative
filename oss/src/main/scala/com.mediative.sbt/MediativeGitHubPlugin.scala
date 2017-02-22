@@ -47,7 +47,7 @@ object MediativeGitHubPlugin extends AutoPlugin {
       autoAPIMappings := true,
       postReleaseSteps += releaseStepTask(SbtGhPages.GhPagesKeys.pushSite),
       scmInfo := Some(ScmInfo(
-        url(git.remoteRepo.value),
+        url(s"https://github.com/${repoOrganization.value}/${repoName.value}"),
         s"scm:git:${git.remoteRepo.value}"
       )),
       developers := List(
