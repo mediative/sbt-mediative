@@ -11,7 +11,7 @@ lazy val core = project.configure(plugin)
   .settings(
     addSbtPlugin("com.typesafe.sbt"  % "sbt-scalariform" % "1.3.0"),
     addSbtPlugin("com.typesafe.sbt"  % "sbt-git"         % "0.8.5"),
-    addSbtPlugin("com.github.gseitz" % "sbt-release"     % "1.0.0")
+    addSbtPlugin("com.github.gseitz" % "sbt-release"     % "1.0.4")
   )
 
 lazy val oss = project.configure(plugin)
@@ -26,7 +26,7 @@ lazy val oss = project.configure(plugin)
 lazy val devops = project.configure(plugin)
   .enablePlugins(MediativeBintrayPlugin)
   .settings(
-    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.0.6")
+    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.5")
   )
 
 lazy val teamcity = project.configure(plugin)
