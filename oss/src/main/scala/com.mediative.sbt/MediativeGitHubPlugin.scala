@@ -29,6 +29,7 @@ import GitPlugin.autoImport.git
 import ScalaUnidocPlugin.autoImport._
 import SitePlugin.autoImport._
 import MediativeProjectPlugin.autoImport._
+import MediativeReleasePlugin.autoImport._
 
 /**
  * Configures the project's GitHub pages using the SBT site plugin.
@@ -37,7 +38,7 @@ import MediativeProjectPlugin.autoImport._
  */
 object MediativeGitHubPlugin extends AutoPlugin {
 
-  override def requires = MediativeProjectPlugin && SitePlugin && GhpagesPlugin && ScalaUnidocPlugin
+  override def requires = MediativeReleasePlugin && SitePlugin && GhpagesPlugin && ScalaUnidocPlugin
 
   override def projectSettings: Seq[Setting[_]] =
     Seq(

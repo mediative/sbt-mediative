@@ -37,7 +37,6 @@ object MediativeProjectPlugin extends AutoPlugin {
   object autoImport {
     val repoOrganization = settingKey[String]("Organization owning the repository")
     val repoName = settingKey[String]("Repository name for publishing")
-    val postReleaseSteps = settingKey[Seq[ReleaseStep]]("Post release steps")
   }
   import autoImport._
 
