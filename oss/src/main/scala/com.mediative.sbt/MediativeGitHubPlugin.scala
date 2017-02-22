@@ -20,11 +20,14 @@ import scala.language.postfixOps
 import sbt._
 import sbt.Keys._
 import com.typesafe.sbt.GitPlugin
-import com.typesafe.sbt.SbtGhPages
-import com.typesafe.sbt.SbtSite.site
+import com.typesafe.sbt.site.SitePlugin
+import com.typesafe.sbt.sbtghpages.GhpagesPlugin
+import sbtunidoc.ScalaUnidocPlugin
 
 import sbtrelease.ReleasePlugin.autoImport._
 import GitPlugin.autoImport.git
+import ScalaUnidocPlugin.autoImport._
+import SitePlugin.autoImport._
 import MediativeProjectPlugin.autoImport._
 
 /**
@@ -34,18 +37,17 @@ import MediativeProjectPlugin.autoImport._
  */
 object MediativeGitHubPlugin extends AutoPlugin {
 
-  override def requires = sbt.plugins.JvmPlugin
+  override def requires = MediativeProjectPlugin && SitePlugin && GhpagesPlugin && ScalaUnidocPlugin
 
   override def projectSettings: Seq[Setting[_]] =
-    site.settings ++
-    site.includeScaladoc("api") ++
-    SbtGhPages.ghpages.settings ++
     Seq(
       homepage in ThisBuild := Some(url(s"https://github.com/${repoOrganization.value}/${repoName.value}")),
       git.remoteRepo := s"git@github.com:${repoOrganization.value}/${repoName.value}.git",
-      postReleaseSteps += releaseStepTask(SbtGhPages.GhPagesKeys.pushSite),
+      siteSubdirName in ScalaUnidoc := "api",
+      addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), siteSubdirName in ScalaUnidoc),
       apiURL in ThisBuild := Some(url(s"https://${repoOrganization.value}.github.io/${repoName.value}/api/")),
       autoAPIMappings in ThisBuild := true,
+      postReleaseSteps += releaseStepTask(GhpagesPlugin.autoImport.ghpagesPushSite),
       scmInfo in ThisBuild := Some(ScmInfo(
         url(s"https://github.com/${repoOrganization.value}/${repoName.value}"),
         s"scm:git:${git.remoteRepo.value}"
