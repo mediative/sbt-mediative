@@ -29,6 +29,8 @@ import MediativeProjectPlugin.autoImport._
 
 /**
  * Configures the project's GitHub pages using the SBT site plugin.
+ *
+ * Must be enabled on the sbt root project.
  */
 object MediativeGitHubPlugin extends AutoPlugin {
 
@@ -44,13 +46,13 @@ object MediativeGitHubPlugin extends AutoPlugin {
       apiURL := Some(url(s"https://${repoOrganization.value}.github.io/${name.in(ThisBuild).value}/api/")),
       autoAPIMappings := true,
       postReleaseSteps := Seq(releaseStepTask(SbtGhPages.GhPagesKeys.pushSite)),
-      pomExtra := {
-        <url>${homepage.value}</url>
-        <scm>
-          <url>${git.remoteRepo.value}</url>
-          <connection>scm:git:${git.remoteRepo.value}</connection>
-        </scm>
-      }
+      scmInfo := Some(ScmInfo(
+        url(git.remoteRepo.value),
+        s"scm:git:${git.remoteRepo.value}"
+      )),
+      developers := List(
+        Developer(repoOrganization.value, "Developers", "", url(s"https://github.com/${repoOrganization.value}"))
+      )
     )
 
 }
