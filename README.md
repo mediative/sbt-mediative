@@ -18,6 +18,10 @@ help quickly setup a new project:
     [info] Writing LICENSE file...
     [info] Writing CONTRIBUTING.md file...
 
+## Documentation
+
+ - [Scaladoc](https://ypg-data.github.io/sbt-mediative/api/#com.mediative.sbt.package)
+
 ## Building
 
 To build the plugins for use locally run the following commands from the project
