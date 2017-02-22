@@ -41,16 +41,16 @@ object MediativeGitHubPlugin extends AutoPlugin {
     site.includeScaladoc("api") ++
     SbtGhPages.ghpages.settings ++
     Seq(
-      homepage := Some(url(s"https://github.com/${repoOrganization.value}/${repoName.value}")),
+      homepage in ThisBuild := Some(url(s"https://github.com/${repoOrganization.value}/${repoName.value}")),
       git.remoteRepo := s"git@github.com:${repoOrganization.value}/${repoName.value}.git",
-      apiURL := Some(url(s"https://${repoOrganization.value}.github.io/${repoName.value}/api/")),
-      autoAPIMappings := true,
       postReleaseSteps += releaseStepTask(SbtGhPages.GhPagesKeys.pushSite),
-      scmInfo := Some(ScmInfo(
+      apiURL in ThisBuild := Some(url(s"https://${repoOrganization.value}.github.io/${repoName.value}/api/")),
+      autoAPIMappings in ThisBuild := true,
+      scmInfo in ThisBuild := Some(ScmInfo(
         url(s"https://github.com/${repoOrganization.value}/${repoName.value}"),
         s"scm:git:${git.remoteRepo.value}"
       )),
-      developers := List(
+      developers in ThisBuild := List(
         Developer(repoOrganization.value, "Developers", "", url(s"https://github.com/${repoOrganization.value}"))
       )
     )
