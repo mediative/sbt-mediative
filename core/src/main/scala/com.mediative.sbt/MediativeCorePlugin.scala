@@ -114,6 +114,7 @@ object MediativeCorePlugin extends AutoPlugin {
         "-Ywarn-value-discard"
         // "-Ywarn-numeric-widen" Requires Scala 2.11: https://issues.scala-lang.org/browse/SI-8340
       ),
+      scalacOptions in (Compile, doc) ~= { _.filterNot(Set("-Xfatal-warnings")) },
       scalacOptions in (Compile, console) ~= { _.filterNot(Set("-Ywarn-unused-import", "-Xfatal-warnings")) },
       scalacOptions in (Test, console) := (scalacOptions in (Compile, console)).value,
       resolvers += Resolver.bintrayRepo("ypg-data", "maven"),
