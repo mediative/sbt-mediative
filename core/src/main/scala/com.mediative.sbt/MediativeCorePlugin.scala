@@ -23,7 +23,10 @@ import scalariform.formatter.preferences._
 import com.typesafe.sbt.SbtScalariform._
 import com.typesafe.sbt.GitPlugin
 
-object JvmCompatibility extends VersionNumberCompatibility {
+/**
+ * Restrict compilation to a specific JVM version.
+ */
+object Jvm extends VersionNumberCompatibility {
   def name = "Java specification compatibility"
   def isCompatible(current: VersionNumber, required: VersionNumber) =
     current.numbers.zip(required.numbers).forall(n => n._1 >= n._2)
@@ -46,7 +49,16 @@ object JvmCompatibility extends VersionNumberCompatibility {
 }
 
 /**
- * Provides the core settings used by Mediative SBT projects.
+ * Core settings used by Mediative sbt projects.
+ *
+ * Includes amongst other things:
+ *  - Versioning via Git tags and `git-describe`.
+ *  - Sane `scalacOptions`.
+ *  - Code formatting via scalariform with `reformat-code` command to format and
+ *    `reformat-code-check` to fail the build if code is not formatting (useful
+ *    to enforce well-formatted code in CI builds).
+ *  - Enables and configures `IntegrationTest` scope to inherit from `Test` scope.
+ *  - Show current project name in the sbt shell prompt.
  *
  * This plugin is automatically enabled.
  */
@@ -57,11 +69,11 @@ object MediativeCorePlugin extends AutoPlugin {
      * Restrict compilation target to a specific JVM version.
      *
      * Usage:
-     * ```scala
+     * {{{
      * Jvm.`1.8`.required
-     * ```
+     * }}}
      */
-    val Jvm = JvmCompatibility
+    val Jvm = com.mediative.sbt.Jvm
 
     /**
      * Disable all publishing of a project.
@@ -88,7 +100,7 @@ object MediativeCorePlugin extends AutoPlugin {
    * classes in src/test. This makes it simple to share common test
    * helper code.
    *
-   * See http://www.scala-sbt.org/release/docs/Testing.html#Custom+test+configuration
+   * See [[http://www.scala-sbt.org/release/docs/Testing.html#Custom+test+configuration]]
    */
   override val projectConfigurations = Seq(Configurations.IntegrationTest extend (Test))
 
@@ -125,8 +137,8 @@ object MediativeCorePlugin extends AutoPlugin {
     codeFormatSettings
 
   /**
-   * Configure Scalariform according to the [Scala style
-   * guide](https://github.com/daniel-trinh/scalariform#scala-style-guide)
+   * Configure Scalariform according to the
+   * [[https://github.com/daniel-trinh/scalariform#scala-style-guide Scala style guide]]
    * and provide a couple of handy aliases for reformatting the code.
    */
   def codeFormatSettings: Seq[Setting[_]] =

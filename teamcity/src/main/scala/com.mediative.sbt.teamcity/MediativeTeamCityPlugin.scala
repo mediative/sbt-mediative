@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.mediative.sbt
+package com.mediative.sbt.teamcity
 
 import sbt._
 import sbt.Keys._
 import sbtbuildinfo.BuildInfoPlugin
 
 /**
- * Provides a plugin to configure sbt-buildinfo for TeamCity builds.
+ * Configure sbt-buildinfo for TeamCity builds.
  *
  * To use add the following lines to the project definition:
  *

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mediative.sbt
+package com.mediative.sbt.oss
 
 import scala.language.postfixOps
 import sbt._
@@ -29,6 +29,12 @@ import ReleasePlugin.autoImport._
 
 /**
  * Settings related with licensing and headers.
+ *
+ * By default, the project license is set to [[http://www.apache.org/licenses/LICENSE-2.0 Apache 2]].
+ * Use the `update-license` command to update license headers in all Scala files.
+ *
+ * Also provides a `bootstrap-project` command to automatically create a `LICENSE`
+ * and `CONTRIBUTING.md` file.
  *
  * This plugin is automatically enabled.
  */

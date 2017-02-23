@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mediative.sbt
+package com.mediative.sbt.devops
 
 import sbt._
 import sbt.Keys._

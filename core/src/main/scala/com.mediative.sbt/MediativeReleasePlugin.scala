@@ -25,16 +25,25 @@ import ReleasePlugin.autoImport._
 import ReleaseTransformations._
 import ReleaseKeys._
 
-/*
- * Customized release process that reads the release version from
- * the command line via `-Dversion=x.y.z` and extends the publishing
- * step to also update of API docs hosted on the project's GitHub
- * pages.
+/**
+ * Customizable release process which works with Git-based versioning.
+ *
+ * To use add the following lines to the project definition:
+ * {{{
+ * .enablePlugins(MediativeReleasePlugin)
+ * }}}
+ *
+ * Configures a release process that reads the release version from
+ * the command line via `-Dversion=x.y.z`. Post-release steps to be executed
+ * after publishing can be added to
+ * [[MediativeReleasePlugin.autoImport.postReleaseSteps]].
  *
  * Compared to the default sbt-release process, all steps that
  * update and commit the version file before and after tagging the
- * release have been removed, since for this project SBT is
- * configured to read the project version from Git.
+ * release have been removed, since this plugin assumes the project
+ * has been configured configured to read the project version from Git.
+ *
+ * This plugin must be enabled.
  */
 object MediativeReleasePlugin extends AutoPlugin {
 

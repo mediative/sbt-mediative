@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mediative.sbt
+package com.mediative.sbt.oss
 
 import scala.language.postfixOps
 import sbt._
@@ -23,7 +23,22 @@ import bintray.BintrayPlugin.autoImport._
 import MediativeProjectPlugin.autoImport._
 
 /**
- * Configures publishing to Bintray.
+ * Settings for publishing a project to Bintray.
+ *
+ * To use add the following lines to the project definition:
+ * {{{
+ * .enablePlugins(MediativeBintrayPlugin)
+ * }}}
+ *
+ * By default, it uses the [[MediativeProjectPlugin.autoImport.repoOrganization]]
+ * setting as the Bintray organization (i.e. sbt-bintray's `bintrayOrganization`
+ * setting and publishes to the Bintray organization's "maven" repository. To
+ * publish to another repository use:
+ * {{{
+ * .settings(bintrayRepository := "sbt-plugins")
+ * }}}
+ *
+ * This plugin must be enabled.
  */
 object MediativeBintrayPlugin extends AutoPlugin {
 

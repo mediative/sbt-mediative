@@ -14,27 +14,44 @@
  * limitations under the License.
  */
 
-package com.mediative.sbt
+package com.mediative.sbt.oss
 
 import scala.language.postfixOps
 import sbt._
 import sbt.Keys._
-import com.typesafe.sbt.GitPlugin
 import com.typesafe.sbt.site.SitePlugin
 import com.typesafe.sbt.sbtghpages.GhpagesPlugin
 import sbtunidoc.ScalaUnidocPlugin
+import com.mediative.sbt.MediativeReleasePlugin
 
-import sbtrelease.ReleasePlugin.autoImport._
-import GitPlugin.autoImport.git
-import ScalaUnidocPlugin.autoImport._
+import sbtunidoc.BaseUnidocPlugin.autoImport.unidoc
+import sbtrelease.ReleasePlugin.autoImport.releaseStepTask
+import com.typesafe.sbt.GitPlugin.autoImport.git
+
+import ScalaUnidocPlugin.autoImport.ScalaUnidoc
 import SitePlugin.autoImport._
 import MediativeProjectPlugin.autoImport._
-import MediativeReleasePlugin.autoImport._
+import MediativeReleasePlugin.autoImport.postReleaseSteps
 
 /**
- * Configures the project's GitHub pages using the SBT site plugin.
+ * Project-wide GitHub related settings, such as SCM and developer info,
+ * as well as publishing of site and scaladoc to the project's GitHub Pages.
  *
- * Must be enabled on the sbt root project.
+ * To use add the following lines to the sbt root project:
+ * {{{
+ * .enablePlugins(MediativeGitHubPlugin)
+ * }}}
+ *
+ * Project-wide settings such as `homepage`, `scmInfo` and `developers` are
+ * scoped `in ThisBuild`. By default, it uses the
+ * [[MediativeProjectPlugin.autoImport.repoOrganization]] setting as the GitHub
+ * organization name.
+ *
+ * Scaladoc is generated using sbt-unidoc which is published to GitHub Pages
+ * using the sbt-site plugin. Thus any additional site content will automatically
+ * be generated and published.
+ *
+ * This plugin must be enabled on the sbt root project **only**.
  */
 object MediativeGitHubPlugin extends AutoPlugin {
 
@@ -46,6 +63,12 @@ object MediativeGitHubPlugin extends AutoPlugin {
       git.remoteRepo := s"git@github.com:${repoOrganization.value}/${repoName.value}.git",
       siteSubdirName in ScalaUnidoc := "api",
       addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), siteSubdirName in ScalaUnidoc),
+      scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
+        "-groups",
+        "-implicits",
+        "-doc-source-url", (scmInfo in ThisBuild).value.get.browseUrl + "/tree/master€{FILE_PATH}.scala",
+        "-sourcepath", baseDirectory.in(LocalRootProject).value.getAbsolutePath
+      ),
       apiURL in ThisBuild := Some(url(s"https://${repoOrganization.value}.github.io/${repoName.value}/api/")),
       autoAPIMappings in ThisBuild := true,
       postReleaseSteps += releaseStepTask(GhpagesPlugin.autoImport.ghpagesPushSite),
