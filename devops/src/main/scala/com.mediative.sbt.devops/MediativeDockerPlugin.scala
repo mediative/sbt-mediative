@@ -36,7 +36,9 @@ object MediativeDockerPlugin extends AutoPlugin {
   val AlpineDockerImage = "openjdk:8-jdk-alpine"
   val AlpineCompatCommands = List(
     "apk add --update bash && rm -rf /var/cache/apk/*",
-    "mkdir -p /opt"
+    "mkdir -p /opt",
+    // XXX: Workaround to make Snappy work with musl libc used by Alpine
+    "ln /lib/ld-musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2"
   )
 
   override def requires = plugins.JvmPlugin && DockerPlugin && JavaAppPackaging
