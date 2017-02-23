@@ -39,7 +39,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides the core settings used by Mediative SBT projects.</p><p>This plugin is automatically enabled.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Core settings used by Mediative sbt projects.</p><p>Includes amongst other things:</p><ul><li>Versioning via Git tags and <code>git-describe</code>.</li><li>Sane <code>scalacOptions</code>.</li><li>Code formatting via scalariform with <code>reformat-code</code> command to format and
+   <code>reformat-code-check</code> to fail the build if code is not formatting (useful
+   to enforce well-formatted code in CI builds).</li><li>Enables and configures <code>IntegrationTest</code> scope to inherit from <code>Test</code> scope.</li><li>Show current project name in the sbt shell prompt.</li></ul><p>This plugin is automatically enabled.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="sbt.AutoPlugin">AutoPlugin</span>, <span class="extype" name="sbt.PluginsFunctions">PluginsFunctions</span>, <span class="extype" name="sbt.Plugins.Basic">Basic</span>, <span class="extype" name="sbt.Plugins">Plugins</span>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
@@ -235,7 +237,7 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="com.mediative.sbt.MediativeCorePlugin#codeFormatSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="com.mediative.sbt.MediativeCorePlugin#codeFormatSettings" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="codeFormatSettings:Seq[sbt.Setting[_]]"></a>
       <a id="codeFormatSettings:Seq[Setting[_]]"></a>
       <h4 class="signature">
@@ -247,11 +249,9 @@
         <span class="name">codeFormatSettings</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="../../../sbt/package.html#Setting[T]=sbt.Def.Setting[T]" class="extmbr" name="sbt.Setting">Setting</a>[_]]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Configure Scalariform according to the [Scala style
-guide](https://github.</p><div class="fullcomment"><div class="comment cmt"><p>Configure Scalariform according to the [Scala style
-guide](https://github.com/daniel-trinh/scalariform#scala-style-guide)
-and provide a couple of handy aliases for reformatting the code.
-</p></div></div>
+      <p class="shortcomment cmt">Configure Scalariform according to the
+<a href="https://github.com/daniel-trinh/scalariform#scala-style-guide" target="_blank">Scala style guide</a>
+and provide a couple of handy aliases for reformatting the code.</p>
     </li><li name="sbt.AutoPlugin#derivedProjects" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="derivedProjects(proj:sbt.ProjectDefinition[_]):Seq[sbt.Project]"></a>
       <a id="derivedProjects(ProjectDefinition[_]):Seq[Project]"></a>
@@ -468,7 +468,7 @@ and provide a couple of handy aliases for reformatting the code.
       <p class="shortcomment cmt">Add the IntegrationTest config to the project.</p><div class="fullcomment"><div class="comment cmt"><p>Add the IntegrationTest config to the project. The <code>extend(Test)</code>
 part makes it so classes in src/it have a classpath dependency on
 classes in src/test. This makes it simple to share common test
-helper code.</p><p>See http://www.scala-sbt.org/release/docs/Testing.html#Custom+test+configuration
+helper code.</p><p>See <a href="http://www.scala-sbt.org/release/docs/Testing.html#Custom+test+configuration" target="_blank">http://www.scala-sbt.org/release/docs/Testing.html#Custom+test+configuration</a>
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.MediativeCorePlugin">MediativeCorePlugin</a> → AutoPlugin</dd></dl></div>
     </li><li name="com.mediative.sbt.MediativeCorePlugin#projectSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="projectSettings:Seq[sbt.Setting[_]]"></a>

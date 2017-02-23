@@ -39,13 +39,39 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"></div>
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides the following groups of sbt plugins:</p><ul><li><a href="" class="extype" name="com.mediative.sbt">Core</a> - core settings and release plugins.</li><li><a href="oss/package.html" class="extype" name="com.mediative.sbt.oss">OSS</a> - plugins for publishing and hosting open
+   source software.</li><li><a href="devops/package.html" class="extype" name="com.mediative.sbt.devops">DevOps</a> - plugins for packaging and delivering
+   software into QA and production environments.</li><li><a href="teamcity/package.html" class="extype" name="com.mediative.sbt.teamcity">TeamCity</a> - utilities for TeamCity builds.
+</li></ul></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div></div>
         
 
       <div id="mbrsel">
         <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        
-        
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.mediative.sbt"><span>sbt</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
             <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
@@ -62,32 +88,19 @@
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="com.mediative.sbt.JvmCompatibility" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="JvmCompatibility"></a>
-      <a id="JvmCompatibility:JvmCompatibility"></a>
+              <ol><li name="com.mediative.sbt.Jvm" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Jvm"></a>
+      <a id="Jvm:Jvm"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="JvmCompatibility$.html"><span class="name">JvmCompatibility</span></a><span class="result"> extends <span class="extype" name="sbt.VersionNumberCompatibility">VersionNumberCompatibility</span></span>
+        <a href="Jvm$.html"><span class="name">Jvm</span></a><span class="result"> extends <span class="extype" name="sbt.VersionNumberCompatibility">VersionNumberCompatibility</span></span>
       </span>
       </h4>
-      
-    </li><li name="com.mediative.sbt.MediativeBintrayPlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MediativeBintrayPlugin"></a>
-      <a id="MediativeBintrayPlugin:MediativeBintrayPlugin"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="MediativeBintrayPlugin$.html"><span class="name">MediativeBintrayPlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
-      </span>
-      </h4>
-      <p class="comment cmt">Configures publishing to Bintray.</p>
+      <p class="comment cmt">Restrict compilation to a specific JVM version.</p>
     </li><li name="com.mediative.sbt.MediativeCorePlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="MediativeCorePlugin"></a>
       <a id="MediativeCorePlugin:MediativeCorePlugin"></a>
@@ -100,46 +113,7 @@
         <a href="MediativeCorePlugin$.html"><span class="name">MediativeCorePlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
       </span>
       </h4>
-      <p class="comment cmt">Provides the core settings used by Mediative SBT projects.</p>
-    </li><li name="com.mediative.sbt.MediativeDockerPlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MediativeDockerPlugin"></a>
-      <a id="MediativeDockerPlugin:MediativeDockerPlugin"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="MediativeDockerPlugin$.html"><span class="name">MediativeDockerPlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
-      </span>
-      </h4>
-      <p class="comment cmt">Package application using the smaller Alpine JDK Docker image.</p>
-    </li><li name="com.mediative.sbt.MediativeGitHubPlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MediativeGitHubPlugin"></a>
-      <a id="MediativeGitHubPlugin:MediativeGitHubPlugin"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="MediativeGitHubPlugin$.html"><span class="name">MediativeGitHubPlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
-      </span>
-      </h4>
-      <p class="comment cmt">Configures the project's GitHub pages using the SBT site plugin.</p>
-    </li><li name="com.mediative.sbt.MediativeProjectPlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MediativeProjectPlugin"></a>
-      <a id="MediativeProjectPlugin:MediativeProjectPlugin"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="MediativeProjectPlugin$.html"><span class="name">MediativeProjectPlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
-      </span>
-      </h4>
-      <p class="comment cmt">Settings related with licensing and headers.</p>
+      <p class="comment cmt">Core settings used by Mediative sbt projects.</p>
     </li><li name="com.mediative.sbt.MediativeReleasePlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="MediativeReleasePlugin"></a>
       <a id="MediativeReleasePlugin:MediativeReleasePlugin"></a>
@@ -152,20 +126,46 @@
         <a href="MediativeReleasePlugin$.html"><span class="name">MediativeReleasePlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
       </span>
       </h4>
-      
-    </li><li name="com.mediative.sbt.MediativeTeamCityPlugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MediativeTeamCityPlugin"></a>
-      <a id="MediativeTeamCityPlugin:MediativeTeamCityPlugin"></a>
+      <p class="comment cmt">Customizable release process which works with Git-based versioning.</p>
+    </li><li name="com.mediative.sbt.devops" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="devops"></a>
+      <a id="devops:devops"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">object</span>
+        <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a href="MediativeTeamCityPlugin$.html"><span class="name">MediativeTeamCityPlugin</span></a><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
+        <a href="devops/package.html"><span class="name">devops</span></a>
       </span>
       </h4>
-      <p class="comment cmt">Provides a plugin to configure sbt-buildinfo for TeamCity builds.</p>
+      
+    </li><li name="com.mediative.sbt.oss" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="oss"></a>
+      <a id="oss:oss"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="oss/package.html"><span class="name">oss</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="com.mediative.sbt.teamcity" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="teamcity"></a>
+      <a id="teamcity:teamcity"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="teamcity/package.html"><span class="name">teamcity</span></a>
+      </span>
+      </h4>
+      
     </li></ol>
             </div>
 
@@ -175,7 +175,11 @@
         </div>
 
         <div id="inheritedMembers">
-        
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
         
         </div>
 
