@@ -25,9 +25,21 @@ import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 /**
  * Package application using the smaller Alpine JDK Docker image.
  *
+ * To use add the following lines to the project definition:
+ * {{{
+ * .enablePlugins(MediativeDockerPlugin)
+ * }}}
+ *
  * It ensures that the Alpine Docker is compatible with the default base image
- * used by sbt-native-packager. It also filters out default commands which increase
+ * used by sbt-native-packager and filters out default commands which increase
  * the image size.
+ *
+ * In addition, it sets the version of the Docker image to either `qa-latest` or
+ * the sbt version based on whether the current version is a release (has been
+ * tagged) or not. This assumes the sbt project is versioned with the sbt-git
+ * plugin as configured by the [[com.mediative.sbt.MediativeCorePlugin]] plugin.
+ *
+ * This plugin must be enabled.
  */
 object MediativeDockerPlugin extends AutoPlugin {
 
