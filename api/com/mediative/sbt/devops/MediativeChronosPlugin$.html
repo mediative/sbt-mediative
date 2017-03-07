@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>MediativeDockerPlugin - com.mediative.sbt.devops.MediativeDockerPlugin</title>
-          <meta name="description" content="MediativeDockerPlugin - com.mediative.sbt.devops.MediativeDockerPlugin" />
-          <meta name="keywords" content="MediativeDockerPlugin com.mediative.sbt.devops.MediativeDockerPlugin" />
+          <title>MediativeChronosPlugin - com.mediative.sbt.devops.MediativeChronosPlugin</title>
+          <meta name="description" content="MediativeChronosPlugin - com.mediative.sbt.devops.MediativeChronosPlugin" />
+          <meta name="keywords" content="MediativeChronosPlugin com.mediative.sbt.devops.MediativeChronosPlugin" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'com.mediative.sbt.devops.MediativeDockerPlugin$';
+            var hash = 'com.mediative.sbt.devops.MediativeChronosPlugin$';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,7 +26,7 @@
       <div id="definition">
         <img src="../../../../lib/object_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="com">com</a>.<a href="../../package.html" class="extype" name="com.mediative">mediative</a>.<a href="../package.html" class="extype" name="com.mediative.sbt">sbt</a>.<a href="package.html" class="extype" name="com.mediative.sbt.devops">devops</a></p>
-        <h1>MediativeDockerPlugin</h1>
+        <h1>MediativeChronosPlugin</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,17 +35,22 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">MediativeDockerPlugin</span><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
+        <span class="name">MediativeChronosPlugin</span><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Package application using the smaller Alpine JDK Docker image.</p><p>To use add the following lines to the project definition:</p><pre>.enablePlugins(MediativeDockerPlugin)</pre><p>It ensures that the Alpine Docker is compatible with the default base image
-used by sbt-native-packager and filters out default commands which increase
-the image size.</p><p>In addition, it sets the version of the Docker image to either <code>qa-latest</code> or
-the sbt version based on whether the current version is a release (has been
-tagged) or not. This assumes the sbt project is versioned with the sbt-git
-plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype" name="com.mediative.sbt.MediativeCorePlugin">com.mediative.sbt.MediativeCorePlugin</a> plugin.</p><p>This plugin must be enabled.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Deploy jobs to Chronos.</p><p>To use add the following lines to the project definition:</p><pre>enablePlugins(MediativeDockerPlugin)
+<span class="cmt">// Configure credentials for each environment</span>
+credentials in DeployEnvironment.QA += Credentials(baseDirectory / <span class="lit">"..."</span>)
+credentials in DeployEnvironment.Production += Credentials(baseDirectory / <span class="lit">"..."</span>)</pre><p>Example credentials file:
+<pre>
+realm=DC/OS
+host=https://dcos.example.com/service/chronos/v1
+user=<...>
+password=<...>
+</pre>
+</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="MediativeDeployPlugin$.html" class="extype" name="com.mediative.sbt.devops.MediativeDeployPlugin">MediativeDeployPlugin</a> for how to customize publishing of artifacts.</p><p>This plugin must be enabled.
+</p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="sbt.AutoPlugin">AutoPlugin</span>, <span class="extype" name="sbt.PluginsFunctions">PluginsFunctions</span>, <span class="extype" name="sbt.Plugins.Basic">Basic</span>, <span class="extype" name="sbt.Plugins">Plugins</span>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
@@ -65,7 +70,7 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="com.mediative.sbt.devops.MediativeDockerPlugin"><span>MediativeDockerPlugin</span></li><li class="in" name="sbt.AutoPlugin"><span>AutoPlugin</span></li><li class="in" name="sbt.PluginsFunctions"><span>PluginsFunctions</span></li><li class="in" name="sbt.Plugins.Basic"><span>Basic</span></li><li class="in" name="sbt.Plugins"><span>Plugins</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="com.mediative.sbt.devops.MediativeChronosPlugin"><span>MediativeChronosPlugin</span></li><li class="in" name="sbt.AutoPlugin"><span>AutoPlugin</span></li><li class="in" name="sbt.PluginsFunctions"><span>PluginsFunctions</span></li><li class="in" name="sbt.Plugins.Basic"><span>Basic</span></li><li class="in" name="sbt.Plugins"><span>Plugins</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -169,32 +174,6 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="com.mediative.sbt.devops.MediativeDockerPlugin#AlpineCompatCommands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AlpineCompatCommands:List[String]"></a>
-      <a id="AlpineCompatCommands:List[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">AlpineCompatCommands</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.collection.immutable.List" class="extype" target="_top">List</a>[<span class="extype" name="java.lang.String">String</span>]</span>
-      </span>
-      </h4>
-      
-    </li><li name="com.mediative.sbt.devops.MediativeDockerPlugin#AlpineDockerImage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AlpineDockerImage:String"></a>
-      <a id="AlpineDockerImage:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">AlpineDockerImage</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="sbt.PluginsFunctions#allRequirements" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="allRequirements:sbt.PluginTrigger"></a>
       <a id="allRequirements:PluginTrigger"></a>
@@ -221,6 +200,19 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin.autoImport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="autoImport"></a>
+      <a id="autoImport:autoImport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MediativeChronosPlugin$$autoImport$.html"><span class="name">autoImport</span></a>
+      </span>
+      </h4>
+      
     </li><li name="sbt.AutoPlugin#buildSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>
       <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>
@@ -234,6 +226,19 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin#chronosSettings" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="chronosSettings(env:sbt.Configuration):Seq[sbt.Def.Setting[_]]"></a>
+      <a id="chronosSettings(Configuration):Seq[sbt.Def.Setting[_]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">chronosSettings</span><span class="params">(<span name="env">env: <span class="extype" name="sbt.Configuration">Configuration</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Init.Setting">sbt.Def.Setting</span>[_]]</span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -467,7 +472,7 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
-    </li><li name="com.mediative.sbt.devops.MediativeDockerPlugin#projectSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin#projectSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="projectSettings:Seq[sbt.Setting[_]]"></a>
       <a id="projectSettings:Seq[Setting[_]]"></a>
       <h4 class="signature">
@@ -479,20 +484,20 @@ plugin as configured by the <a href="../MediativeCorePlugin$.html" class="extype
         <span class="name">projectSettings</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="../../../../sbt/package.html#Setting[T]=sbt.Def.Setting[T]" class="extmbr" name="sbt.Setting">Setting</a>[_]]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeDockerPlugin">MediativeDockerPlugin</a> → AutoPlugin</dd></dl></div>
-    </li><li name="com.mediative.sbt.devops.MediativeDockerPlugin#requires" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="requires:sbt.Plugins"></a>
-      <a id="requires:Plugins"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeChronosPlugin">MediativeChronosPlugin</a> → AutoPlugin</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin#requires" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="requires:com.mediative.sbt.devops.MediativeDeployPlugin.type"></a>
+      <a id="requires:MediativeDeployPlugin.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">requires</span><span class="result">: <span class="extype" name="sbt.Plugins">Plugins</span></span>
+        <span class="name">requires</span><span class="result">: <a href="MediativeDeployPlugin$.html" class="extype" name="com.mediative.sbt.devops.MediativeDeployPlugin">MediativeDeployPlugin</a>.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeDockerPlugin">MediativeDockerPlugin</a> → AutoPlugin</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeChronosPlugin">MediativeChronosPlugin</a> → AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
