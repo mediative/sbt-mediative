@@ -28,6 +28,8 @@ lazy val oss = project.configure(plugin)
 lazy val devops = project.configure(plugin)
   .enablePlugins(MediativeBintrayPlugin)
   .settings(
+    libraryDependencies += "org.scalaj" %% "scalaj-http" % "2.3.0",
+    libraryDependencies += "com.typesafe" % "config" % "1.3.1",
     addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.5")
   )
 

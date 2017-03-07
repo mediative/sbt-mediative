@@ -72,13 +72,7 @@ object MediativeDockerPlugin extends AutoPlugin {
           filteredCommands
       }
     },
-    daemonUser in Docker := "root",
-    version in Docker := {
-      if (version.value matches ".*-g[0-9a-f]{4,}(-SNAPSHOT)?")
-        "qa-latest"
-      else
-        version.value
-    }
+    daemonUser in Docker := "root"
   )
 
 }
