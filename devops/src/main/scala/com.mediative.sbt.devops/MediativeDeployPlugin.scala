@@ -63,7 +63,7 @@ object MediativeDeployPlugin extends AutoPlugin {
       Def.task {
         val latest = env match {
           case DeployEnvironment.Production => sys.error(s"Cannot promote from $env")
-          case _ => s"$env-latest"
+          case _ => (version in (env, deploy)).value
         }
         val tag = (version in deploy).value
         val fromImage = dockerAlias.value.copy(tag = Some(latest)).versioned
