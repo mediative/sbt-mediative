@@ -41,8 +41,8 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Deploy jobs to Chronos.</p><p>To use add the following lines to the project definition:</p><pre>enablePlugins(MediativeDockerPlugin)
 <span class="cmt">// Configure credentials for each environment</span>
-credentials in DeployEnvironment.QA += Credentials(baseDirectory / <span class="lit">"..."</span>)
-credentials in DeployEnvironment.Production += Credentials(baseDirectory / <span class="lit">"..."</span>)</pre><p>Example credentials file:
+credentials in DeployEnvironment.QA += Credentials(baseDirectory.value / <span class="lit">"..."</span>)
+credentials in DeployEnvironment.Production += Credentials(baseDirectory.value / <span class="lit">"..."</span>)</pre><p>Example credentials file:
 <pre>
 realm=DC/OS
 host=https://dcos.example.com/service/chronos/v1
