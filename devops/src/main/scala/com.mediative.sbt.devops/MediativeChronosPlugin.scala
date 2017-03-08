@@ -30,7 +30,7 @@ import MediativeDeployPlugin.autoImport._
  *
  * To use add the following lines to the project definition:
  * {{{
- * enablePlugins(MediativeDockerPlugin)
+ * enablePlugins(MediativeChronosPlugin)
  * // Configure credentials for each environment
  * credentials in DeployEnvironment.QA += Credentials(baseDirectory.value / "...")
  * credentials in DeployEnvironment.Production += Credentials(baseDirectory.value / "...")
@@ -49,11 +49,6 @@ import MediativeDeployPlugin.autoImport._
  * This plugin must be enabled.
  */
 object MediativeChronosPlugin extends AutoPlugin {
-
-  object autoImport {
-    val chronosTemplate = taskKey[Config]("Chronos job template")
-  }
-  import autoImport._
 
   override def requires = MediativeDeployPlugin
   override def projectSettings: Seq[Setting[_]] = Def.settings(
