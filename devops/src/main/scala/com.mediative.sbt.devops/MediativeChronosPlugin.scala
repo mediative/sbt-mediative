@@ -32,8 +32,8 @@ import MediativeDeployPlugin.autoImport._
  * {{{
  * enablePlugins(MediativeDockerPlugin)
  * // Configure credentials for each environment
- * credentials in DeployEnvironment.QA += Credentials(baseDirectory / "...")
- * credentials in DeployEnvironment.Production += Credentials(baseDirectory / "...")
+ * credentials in DeployEnvironment.QA += Credentials(baseDirectory.value / "...")
+ * credentials in DeployEnvironment.Production += Credentials(baseDirectory.value / "...")
  * }}}
  *
  * Example credentials file:
