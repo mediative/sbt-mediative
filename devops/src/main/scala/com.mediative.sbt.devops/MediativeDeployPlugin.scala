@@ -18,8 +18,10 @@ package com.mediative.sbt.devops
 
 import sbt._
 import sbt.Keys._
+import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.stage
 import com.typesafe.sbt.packager.docker.DockerPlugin
 import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
+import com.typesafe.sbt.packager.docker.DockerPlugin.{ publishLocalDocker, publishDocker }
 import com.typesafe.sbt.packager.Keys.packageName
 import com.typesafe.config._
 import scalaj.http._
@@ -31,20 +33,15 @@ import scalaj.http._
  */
 object MediativeDeployPlugin extends AutoPlugin {
 
-  def docker(log: Logger, args: String*): Unit = {
-    Process("docker" +: args.toSeq) ! log
-    ()
-  }
-
   object autoImport {
     val deploy = taskKey[Unit]("Deploy a job or an application")
     val deployTemplate = settingKey[Config]("Template for deploying job or application")
     val deployConfig = taskKey[Config]("Configuration for generating the job or application template")
 
     object DeployEnvironment {
-      val Production = config("prod")
-      val QA = config("qa")
-      val Staging = config("stg")
+      val Production = config("prod") describedAs("Deployment to prod environment.")
+      val QA = config("qa") describedAs("Deployment to QA environment.")
+      val Staging = config("stg") describedAs("Deployment to staging environment.")
     }
 
     /**
@@ -69,14 +66,18 @@ object MediativeDeployPlugin extends AutoPlugin {
           case _ => s"$env-latest"
         }
         val tag = (version in deploy).value
-        val dockerImage = s"${dockerRepository.value.get}/${packageName.in(Docker).value}"
-        val fromImage = s"$dockerImage:$latest"
-        val toImage = s"$dockerImage:$tag"
+        val fromImage = dockerAlias.value.copy(tag = Some(latest)).versioned
+        val toImage = dockerAlias.value.copy(tag = Some(tag)).versioned
+
+        def docker(args: String*): Unit = {
+          Process(dockerExecCommand.value ++ args.toSeq) ! streams.value.log
+          ()
+        }
 
         streams.value.log.info(s"Promoting $latest to $tag")
-        docker(streams.value.log, "pull", fromImage)
-        docker(streams.value.log, "tag", fromImage, toImage)
-        docker(streams.value.log, "push", toImage)
+        docker("pull", fromImage)
+        docker("tag", fromImage, toImage)
+        publishDocker(dockerExecCommand.value, toImage, streams.value.log)
       }
 
     /**
@@ -91,14 +92,19 @@ object MediativeDeployPlugin extends AutoPlugin {
      */
    val publishDockerImage =
      Def.task {
-       val _ = (publishLocal in Docker).value
        val tag = (version in deploy).value
-       val dockerImage = s"${dockerRepository.value.get}/${packageName.in(Docker).value}:$tag"
+       val dockerImage = dockerAlias.value.copy(tag = Some(tag)).versioned
+       val log = streams.value.log
 
-       streams.value.log.info(s"Publishing $dockerImage")
-       docker(streams.value.log, "rmi", dockerImage)
-       docker(streams.value.log, "tag", (dockerTarget in Docker).value, dockerImage)
-       docker(streams.value.log, "push", dockerImage)
+       streams.value.log.info(s"Building $tag")
+       publishLocalDocker(
+         stage.value,
+         dockerExecCommand.value ++ Seq("build", "--force-rm", "-t", dockerImage, "."),
+         log
+       )
+
+       streams.value.log.info(s"Publishing $tag")
+       publishDocker(dockerExecCommand.value, dockerImage, log)
      }
   }
 

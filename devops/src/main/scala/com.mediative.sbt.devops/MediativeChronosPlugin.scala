@@ -18,7 +18,7 @@ package com.mediative.sbt.devops
 
 import sbt._
 import sbt.Keys._
-import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
+import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport.dockerAlias
 import com.typesafe.sbt.packager.Keys.packageName
 import com.typesafe.config._
 import scalaj.http._
@@ -57,7 +57,6 @@ object MediativeChronosPlugin extends AutoPlugin {
 
   override def requires = MediativeDeployPlugin
   override def projectSettings: Seq[Setting[_]] = Def.settings(
-    version in Docker := "latest",
     chronosSettings(DeployEnvironment.Production),
     chronosSettings(DeployEnvironment.QA),
     chronosSettings(DeployEnvironment.Staging)
@@ -67,10 +66,10 @@ object MediativeChronosPlugin extends AutoPlugin {
     inConfig(env)(Seq(
       deployTemplate := ConfigFactory.parseResources(getClass, "chronos-template.conf"),
       deployConfig := {
-        val tag = (version in deploy).value
+        val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
 
         ConfigFactory.parseString(s"""
-          docker.image = "${dockerRepository.value.get}/${packageName.in(Docker).value}:$tag"
+          docker.image = "${dockerImage}"
         """)
       },
       version in deploy := {
