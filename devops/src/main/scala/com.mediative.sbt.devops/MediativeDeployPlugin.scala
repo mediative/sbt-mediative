@@ -98,7 +98,7 @@ object MediativeDeployPlugin extends AutoPlugin {
 
        streams.value.log.info(s"Building $tag")
        publishLocalDocker(
-         stage.value,
+         (stage in Docker).value,
          dockerExecCommand.value ++ Seq("build", "--force-rm", "-t", dockerImage, "."),
          log
        )
