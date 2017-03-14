@@ -129,7 +129,7 @@ object MediativeCorePlugin extends AutoPlugin {
       scalacOptions in (Compile, doc) ~= { _.filterNot(Set("-Xfatal-warnings")) },
       scalacOptions in (Compile, console) ~= { _.filterNot(Set("-Ywarn-unused-import", "-Xfatal-warnings")) },
       scalacOptions in (Test, console) := (scalacOptions in (Compile, console)).value,
-      resolvers += Resolver.bintrayRepo("ypg-data", "maven"),
+      resolvers += Resolver.bintrayRepo("mediative", "maven"),
       fork in Test := true,
       // Show current project name in the SBT prompt, e.g. `ReadWrite>`
       shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }

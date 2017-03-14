@@ -7,7 +7,7 @@ Mediative SBT projects.
 
 To use the plugins add the following to `project/plugins.sbt`:
 
-    resolvers += Resolver.url("YPG-Data SBT Plugins", url("https://dl.bintray.com/ypg-data/sbt-plugins"))(Resolver.ivyStylePatterns)
+    resolvers += Resolver.url("mediative:sbt-plugins", url("https://dl.bintray.com/mediative/sbt-plugins"))(Resolver.ivyStylePatterns)
     addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.3.2")
     addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.3.2")
 
@@ -20,7 +20,7 @@ help quickly setup a new project:
 
 ## Documentation
 
- - [Scaladoc](https://ypg-data.github.io/sbt-mediative/api/#com.mediative.sbt.package)
+ - [Scaladoc](https://mediative.github.io/sbt-mediative/api/#com.mediative.sbt.package)
 
 ## Building
 
