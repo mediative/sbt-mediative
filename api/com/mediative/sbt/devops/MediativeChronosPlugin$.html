@@ -39,7 +39,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Deploy jobs to Chronos.</p><p>To use add the following lines to the project definition:</p><pre>enablePlugins(MediativeDockerPlugin)
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Deploy jobs to Chronos.</p><p>To use add the following lines to the project definition:</p><pre>enablePlugins(MediativeChronosPlugin)
 <span class="cmt">// Configure credentials for each environment</span>
 credentials in DeployEnvironment.QA += Credentials(baseDirectory.value / <span class="lit">"..."</span>)
 credentials in DeployEnvironment.Production += Credentials(baseDirectory.value / <span class="lit">"..."</span>)</pre><p>Example credentials file:
@@ -200,19 +200,6 @@ password=<...>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin.autoImport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="autoImport"></a>
-      <a id="autoImport:autoImport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="MediativeChronosPlugin$$autoImport$.html"><span class="name">autoImport</span></a>
-      </span>
-      </h4>
-      
     </li><li name="sbt.AutoPlugin#buildSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>
       <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>

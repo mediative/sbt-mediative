@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>autoImport - com.mediative.sbt.devops.MediativeChronosPlugin.autoImport</title>
-          <meta name="description" content="autoImport - com.mediative.sbt.devops.MediativeChronosPlugin.autoImport" />
-          <meta name="keywords" content="autoImport com.mediative.sbt.devops.MediativeChronosPlugin.autoImport" />
+          <title>MediativeMarathonPlugin - com.mediative.sbt.devops.MediativeMarathonPlugin</title>
+          <meta name="description" content="MediativeMarathonPlugin - com.mediative.sbt.devops.MediativeMarathonPlugin" />
+          <meta name="keywords" content="MediativeMarathonPlugin com.mediative.sbt.devops.MediativeMarathonPlugin" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'com.mediative.sbt.devops.MediativeChronosPlugin$$autoImport$';
+            var hash = 'com.mediative.sbt.devops.MediativeMarathonPlugin$';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -25,8 +25,8 @@
         <body class="value">
       <div id="definition">
         <img src="../../../../lib/object_big.png" />
-        <p id="owner"><a href="../../../package.html" class="extype" name="com">com</a>.<a href="../../package.html" class="extype" name="com.mediative">mediative</a>.<a href="../package.html" class="extype" name="com.mediative.sbt">sbt</a>.<a href="package.html" class="extype" name="com.mediative.sbt.devops">devops</a>.<a href="MediativeChronosPlugin$.html" class="extype" name="com.mediative.sbt.devops.MediativeChronosPlugin">MediativeChronosPlugin</a></p>
-        <h1>autoImport</h1>
+        <p id="owner"><a href="../../../package.html" class="extype" name="com">com</a>.<a href="../../package.html" class="extype" name="com.mediative">mediative</a>.<a href="../package.html" class="extype" name="com.mediative.sbt">sbt</a>.<a href="package.html" class="extype" name="com.mediative.sbt.devops">devops</a></p>
+        <h1>MediativeMarathonPlugin</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,13 +35,14 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">autoImport</span>
+        <span class="name">MediativeMarathonPlugin</span><span class="result"> extends <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Deploy apps to Marathon.</p><p>To use add the following lines to the project definition:</p><pre>enablePlugins(MediativeMarathonPlugin)</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="MediativeDeployPlugin$.html" class="extype" name="com.mediative.sbt.devops.MediativeDeployPlugin">MediativeDeployPlugin</a> for how to customize publishing of artifacts.</p><p>This plugin must be enabled.
+</p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="sbt.AutoPlugin">AutoPlugin</span>, <span class="extype" name="sbt.PluginsFunctions">PluginsFunctions</span>, <span class="extype" name="sbt.Plugins.Basic">Basic</span>, <span class="extype" name="sbt.Plugins">Plugins</span>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -59,7 +60,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="com.mediative.sbt.devops.MediativeChronosPlugin.autoImport"><span>autoImport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="com.mediative.sbt.devops.MediativeMarathonPlugin"><span>MediativeMarathonPlugin</span></li><li class="in" name="sbt.AutoPlugin"><span>AutoPlugin</span></li><li class="in" name="sbt.PluginsFunctions"><span>PluginsFunctions</span></li><li class="in" name="sbt.Plugins.Basic"><span>Basic</span></li><li class="in" name="sbt.Plugins"><span>Plugins</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -124,6 +125,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="sbt.Plugins.Basic#&amp;&amp;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&amp;&amp;(o:sbt.Plugins.Basic):sbt.Plugins"></a>
+      <a id="&amp;&amp;(Basic):Plugins"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $amp$amp" class="name">&amp;&amp;</span><span class="params">(<span name="o">o: <span class="extype" name="sbt.Plugins.Basic">Basic</span></span>)</span><span class="result">: <span class="extype" name="sbt.Plugins">Plugins</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Basic → Plugins</dd></dl></div>
     </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:AnyRef):Boolean"></a>
       <a id="==(AnyRef):Boolean"></a>
@@ -150,6 +164,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="sbt.PluginsFunctions#allRequirements" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allRequirements:sbt.PluginTrigger"></a>
+      <a id="allRequirements:PluginTrigger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allRequirements</span><span class="result">: <span class="extype" name="sbt.PluginTrigger">PluginTrigger</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>PluginsFunctions</dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -163,19 +190,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="com.mediative.sbt.devops.MediativeChronosPlugin.autoImport#chronosTemplate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="chronosTemplate:sbt.TaskKey[com.typesafe.config.Config]"></a>
-      <a id="chronosTemplate:TaskKey[Config]"></a>
+    </li><li name="sbt.AutoPlugin#buildSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>
+      <a id="buildSettings:Seq[sbt.Def.Setting[_]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">chronosTemplate</span><span class="result">: <span class="extype" name="sbt.TaskKey">TaskKey</span>[<span class="extype" name="com.typesafe.config.Config">Config</span>]</span>
+        <span class="name">buildSettings</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Init.Setting">sbt.Def.Setting</span>[_]]</span>
       </span>
       </h4>
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -195,6 +222,32 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="sbt.AutoPlugin#derivedProjects" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="derivedProjects(proj:sbt.ProjectDefinition[_]):Seq[sbt.Project]"></a>
+      <a id="derivedProjects(ProjectDefinition[_]):Seq[Project]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">derivedProjects</span><span class="params">(<span name="proj">proj: <span class="extype" name="sbt.ProjectDefinition">ProjectDefinition</span>[_]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Project">Project</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
+    </li><li name="sbt.PluginsFunctions#empty" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="empty:sbt.Plugins"></a>
+      <a id="empty:Plugins"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">empty</span><span class="result">: <span class="extype" name="sbt.Plugins">Plugins</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>PluginsFunctions</dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -221,6 +274,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="sbt.AutoPlugin#extraProjects" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="extraProjects:Seq[sbt.Project]"></a>
+      <a id="extraProjects:Seq[Project]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extraProjects</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Project">Project</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -253,6 +319,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="sbt.AutoPlugin#globalSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="globalSettings:Seq[sbt.Def.Setting[_]]"></a>
+      <a id="globalSettings:Seq[sbt.Def.Setting[_]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">globalSettings</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Init.Setting">sbt.Def.Setting</span>[_]]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -279,6 +358,32 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="sbt.AutoPlugin#label" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="label:String"></a>
+      <a id="label:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">label</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeMarathonPlugin#marathonSettings" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="marathonSettings(env:sbt.Configuration):Seq[sbt.Def.Setting[_]]"></a>
+      <a id="marathonSettings(Configuration):Seq[sbt.Def.Setting[_]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">marathonSettings</span><span class="params">(<span name="env">env: <span class="extype" name="sbt.Configuration">Configuration</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Init.Setting">sbt.Def.Setting</span>[_]]</span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -292,6 +397,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="sbt.PluginsFunctions#noTrigger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="noTrigger:sbt.PluginTrigger"></a>
+      <a id="noTrigger:PluginTrigger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noTrigger</span><span class="result">: <span class="extype" name="sbt.PluginTrigger">PluginTrigger</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>PluginsFunctions</dd></dl></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <a id="notify():Unit"></a>
@@ -318,6 +436,45 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="sbt.AutoPlugin#projectConfigurations" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="projectConfigurations:Seq[sbt.Configuration]"></a>
+      <a id="projectConfigurations:Seq[Configuration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">projectConfigurations</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="sbt.Configuration">Configuration</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeMarathonPlugin#projectSettings" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="projectSettings:Seq[sbt.Setting[_]]"></a>
+      <a id="projectSettings:Seq[Setting[_]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">projectSettings</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="../../../../sbt/package.html#Setting[T]=sbt.Def.Setting[T]" class="extmbr" name="sbt.Setting">Setting</a>[_]]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeMarathonPlugin">MediativeMarathonPlugin</a> → AutoPlugin</dd></dl></div>
+    </li><li name="com.mediative.sbt.devops.MediativeMarathonPlugin#requires" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="requires:sbt.Plugins"></a>
+      <a id="requires:Plugins"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">requires</span><span class="result">: <span class="extype" name="sbt.Plugins">Plugins</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.mediative.sbt.devops.MediativeMarathonPlugin">MediativeMarathonPlugin</a> → AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -331,7 +488,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="sbt.AutoPlugin#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
       <h4 class="signature">
@@ -340,10 +497,23 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin → AnyRef → Any</dd></dl></div>
+    </li><li name="sbt.AutoPlugin#trigger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="trigger:sbt.PluginTrigger"></a>
+      <a id="trigger:PluginTrigger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">trigger</span><span class="result">: <span class="extype" name="sbt.PluginTrigger">PluginTrigger</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AutoPlugin</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -410,7 +580,15 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="sbt.AutoPlugin">
+              <h3>Inherited from <span class="extype" name="sbt.AutoPlugin">AutoPlugin</span></h3>
+            </div><div class="parent" name="sbt.PluginsFunctions">
+              <h3>Inherited from <span class="extype" name="sbt.PluginsFunctions">PluginsFunctions</span></h3>
+            </div><div class="parent" name="sbt.Plugins.Basic">
+              <h3>Inherited from <span class="extype" name="sbt.Plugins.Basic">Basic</span></h3>
+            </div><div class="parent" name="sbt.Plugins">
+              <h3>Inherited from <span class="extype" name="sbt.Plugins">Plugins</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
