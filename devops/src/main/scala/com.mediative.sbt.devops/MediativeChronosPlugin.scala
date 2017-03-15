@@ -100,7 +100,10 @@ object MediativeChronosPlugin extends AutoPlugin {
           config.render(opts)
         }
 
-        val jobConfig = ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf").getConfig("job")
+        val jobConfig = ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf")
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
+          .withFallback(ConfigFactory.parseString("job {}"))
+          .getConfig("job")
 
         val buildConf = jobConfig
           .withFallback(deployConfig.value)

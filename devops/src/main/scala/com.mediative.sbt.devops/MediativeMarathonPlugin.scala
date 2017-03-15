@@ -79,8 +79,12 @@ object MediativeMarathonPlugin extends AutoPlugin {
           config.render(opts)
         }
 
-        val jobConfig = ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf").getConfig("marathon")
-        val buildConf = jobConfig
+        val appConfig = ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf")
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
+          .withFallback(ConfigFactory.parseString("marathon {}"))
+          .getConfig("marathon")
+
+        val buildConf = appConfig
           .withFallback(deployConfig.value)
           .withFallback(ConfigFactory.parseString(s"""
             name = "${name.value}"
