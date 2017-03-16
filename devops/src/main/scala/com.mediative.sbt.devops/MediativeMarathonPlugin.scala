@@ -56,8 +56,21 @@ object MediativeMarathonPlugin extends AutoPlugin {
         val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
 
         ConfigFactory.parseString(s"""
-          docker.image = "${dockerImage}"
+          deploy.environment = "$env"
+          marathon {}
         """)
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
+          .resolve() // Resolve before extracting the Marathon sub-config
+          .getConfig("marathon")
+          .withFallback(ConfigFactory.parseString(s"""
+            name = "${name.value}"
+            version = "${version.value}"
+            docker.image = "${dockerImage}"
+            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
+            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
+          """))
+          .resolve()
       },
       version in deploy := {
         env match {
@@ -79,21 +92,7 @@ object MediativeMarathonPlugin extends AutoPlugin {
           config.render(opts)
         }
 
-        val appConfig = ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf")
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-          .withFallback(ConfigFactory.parseString("marathon {}"))
-          .getConfig("marathon")
-
-        val buildConf = appConfig
-          .withFallback(deployConfig.value)
-          .withFallback(ConfigFactory.parseString(s"""
-            name = "${name.value}"
-            version = "${version.value}"
-            deploy.environment = "$env"
-            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
-            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
-          """))
-
+        val buildConf = deployConfig.value
         val appId = buildConf.getString("name")
         val json = toJson(deployTemplate.value.resolveWith(buildConf).root)
         val inputStream = new java.io.ByteArrayInputStream(json.getBytes("UTF-8"))
