@@ -35,7 +35,7 @@ object MediativeDeployPlugin extends AutoPlugin {
 
   object autoImport {
     val deploy = taskKey[Unit]("Deploy a job or an application")
-    val deployTemplate = settingKey[Config]("Template for deploying job or application")
+    val deployTemplate = taskKey[Config]("Template for deploying job or application")
     val deployConfig = taskKey[Config]("Configuration for generating the job or application template")
 
     object DeployEnvironment {
