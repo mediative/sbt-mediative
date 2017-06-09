@@ -55,9 +55,21 @@ object MediativeMarathonPlugin extends AutoPlugin {
       deployConfig := {
         val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
 
+        def envVar(name: String) = sys.env.get(name)
+        def branch = ("git symbolic-ref -q --short HEAD" #|| "git rev-parse HEAD").!!.trim
+        val ciInfo =
+          Seq(
+            envVar("TEAMCITY_PROJECT_NAME").orElse(envVar("USER")).getOrElse(name.value),
+            envVar("TEAMCITY_BUILDCONF_NAME").getOrElse(branch),
+            envVar("BUILD_NUMBER").getOrElse(java.time.LocalDateTime.now.toString)
+          ).mkString(":")
+
         ConfigFactory.parseString(s"""
           deploy.environment = "$env"
-          marathon {}
+          marathon {
+            deploy.environment = "$env"
+            deploy.info = "${version.value} by $ciInfo"
+          }
         """)
           .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
           .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
