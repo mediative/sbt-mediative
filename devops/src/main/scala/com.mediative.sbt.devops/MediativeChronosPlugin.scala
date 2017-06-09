@@ -64,8 +64,21 @@ object MediativeChronosPlugin extends AutoPlugin {
         val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
 
         ConfigFactory.parseString(s"""
-          docker.image = "${dockerImage}"
+          deploy.environment = "$env"
+          job {}
         """)
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
+          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
+          .resolve() // Resolve before extracting the job sub-config
+          .getConfig("job")
+          .withFallback(ConfigFactory.parseString(s"""
+            name = "${name.value}"
+            version = "${version.value}"
+            docker.image = "${dockerImage}"
+            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
+            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
+          """))
+          .resolve()
       },
       version in deploy := {
         env match {
@@ -100,21 +113,7 @@ object MediativeChronosPlugin extends AutoPlugin {
           config.render(opts)
         }
 
-        val jobConfig = ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf")
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-          .withFallback(ConfigFactory.parseString("job {}"))
-          .getConfig("job")
-
-        val buildConf = jobConfig
-          .withFallback(deployConfig.value)
-          .withFallback(ConfigFactory.parseString(s"""
-            name = "${name.value}"
-            version = "${version.value}"
-            deploy.environment = "$env"
-            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
-            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
-          """))
-
+        val buildConf = deployConfig.value
         val currentJson = http(chronos, s"/scheduler/jobs/search?name=${buildConf.getString("name")}")
         val currentConf = ConfigFactory.parseString(s"{ current = $currentJson }").getObjectList("current") match {
           case list if list.isEmpty => ConfigFactory.empty.root
