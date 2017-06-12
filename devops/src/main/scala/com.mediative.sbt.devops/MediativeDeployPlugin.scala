@@ -50,7 +50,7 @@ object MediativeDeployPlugin extends AutoPlugin {
      * To promote from QA (using the `qa-latest` Docker tag) to production:
      * {{{
      * .settings(
-     *   deployPreparation in DeployEnvironment.Production := promoteDockerImage(DeployEnvironment.QA)
+     *   publish in (DeployEnvironment.Production, deploy) := promoteDockerImage(DeployEnvironment.QA)
      * )
      * }}}
      *
@@ -86,7 +86,7 @@ object MediativeDeployPlugin extends AutoPlugin {
      * To deploy a newly build Docker image to QA:
      * {{{
      * .settings(
-     *   deployPreparation in DeployEnvironment.QA := publishDockerImage.value
+     *   publish in (DeployEnvironment.QA, deploy) := publishDockerImage.value
      * )
      * }}}
      */
