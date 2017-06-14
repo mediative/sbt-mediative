@@ -37,6 +37,7 @@ object MediativeDeployPlugin extends AutoPlugin {
     val deploy = taskKey[Unit]("Deploy a job or an application")
     val deployTemplate = taskKey[Config]("Template for deploying job or application")
     val deployConfig = taskKey[Config]("Configuration for generating the job or application template")
+    val deployJson = taskKey[String]("Generate a JSON descriptor by applying the deploy config to the template")
 
     object DeployEnvironment {
       val Production = config("prod") describedAs("Deployment to prod environment.")
@@ -107,7 +108,57 @@ object MediativeDeployPlugin extends AutoPlugin {
        publishDocker(dockerExecCommand.value, dockerImage, log)
      }
   }
+  import autoImport._
 
   override def requires = MediativeDockerPlugin
 
+  def toJson(config: ConfigObject): String = {
+    val opts = ConfigRenderOptions.defaults.setJson(true).setOriginComments(false).setComments(false)
+    config.render(opts)
+  }
+
+  def deploySettings(env: Configuration, service: String) = inConfig(env)(Seq(
+    deployTemplate := ConfigFactory.empty,
+    version in deploy := {
+      env match {
+        case DeployEnvironment.Production => version.value
+        case _ => s"$env-latest"
+      }
+    },
+    publish in deploy := publishDockerImage.value,
+    envVars in deploy := Map.empty,
+    deployConfig := {
+      val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
+
+      def envVar(name: String) = sys.env.get(name)
+      def branch = ("git symbolic-ref -q --short HEAD" #|| "git rev-parse HEAD").!!.trim
+      val ciInfo =
+        Seq(
+          envVar("TEAMCITY_PROJECT_NAME").orElse(envVar("USER")).getOrElse(name.value),
+          envVar("TEAMCITY_BUILDCONF_NAME").getOrElse(branch),
+          envVar("BUILD_NUMBER").getOrElse(java.time.LocalDateTime.now.toString)
+        ).mkString(":")
+
+      ConfigFactory.parseString(s"""
+          deploy.environment = "$env"
+          job {
+            deploy.environment = "$env"
+            deploy.info = "${version.value} by $ciInfo"
+          }
+        """)
+        .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
+        .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
+        .resolve() // Resolve before extracting the job sub-config
+        .getConfig(service)
+        .withFallback(ConfigFactory.parseString(s"""
+          name = "${name.value}"
+          version = "${version.value}"
+          docker.image = "${dockerImage}"
+          developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
+          developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
+        """))
+        .resolve()
+    },
+    deployJson := toJson(deployTemplate.value.resolveWith(deployConfig.value).root)
+  ))
 }

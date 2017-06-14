@@ -50,66 +50,19 @@ object MediativeMarathonPlugin extends AutoPlugin {
   )
 
   def marathonSettings(env: Configuration) =
+    MediativeDeployPlugin.deploySettings(env, "marathon") ++
     inConfig(env)(Seq(
-      deployTemplate := ConfigFactory.empty,
-      deployConfig := {
-        val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
-
-        def envVar(name: String) = sys.env.get(name)
-        def branch = ("git symbolic-ref -q --short HEAD" #|| "git rev-parse HEAD").!!.trim
-        val ciInfo =
-          Seq(
-            envVar("TEAMCITY_PROJECT_NAME").orElse(envVar("USER")).getOrElse(name.value),
-            envVar("TEAMCITY_BUILDCONF_NAME").getOrElse(branch),
-            envVar("BUILD_NUMBER").getOrElse(java.time.LocalDateTime.now.toString)
-          ).mkString(":")
-
-        ConfigFactory.parseString(s"""
-          deploy.environment = "$env"
-          marathon {
-            deploy.environment = "$env"
-            deploy.info = "${version.value} by $ciInfo"
-          }
-        """)
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-          .resolve() // Resolve before extracting the Marathon sub-config
-          .getConfig("marathon")
-          .withFallback(ConfigFactory.parseString(s"""
-            name = "${name.value}"
-            version = "${version.value}"
-            docker.image = "${dockerImage}"
-            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
-            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
-          """))
-          .resolve()
-      },
-      version in deploy := {
-        env match {
-          case DeployEnvironment.Production => version.value
-          case _ => s"$env-latest"
-        }
-      },
-      publish in deploy := publishDockerImage.value,
-      envVars in deploy := Map.empty,
       deploy := {
         val _ = (publish in deploy).value
+        val appId = deployConfig.value.getString("name")
+        val json = deployJson.value
+        val inputStream = new java.io.ByteArrayInputStream(json.getBytes("UTF-8"))
 
         def marathon(args: String*): ProcessBuilder = {
           Process(Seq(dcosCli.value.getAbsolutePath, "marathon") ++ args.toSeq, None, (envVars in deploy).value.toSeq: _*)
         }
 
-        def toJson(config: ConfigObject): String = {
-          val opts = ConfigRenderOptions.defaults.setJson(true).setOriginComments(false).setComments(false)
-          config.render(opts)
-        }
-
-        val buildConf = deployConfig.value
-        val appId = buildConf.getString("name")
-        val json = toJson(deployTemplate.value.resolveWith(buildConf).root)
-        val inputStream = new java.io.ByteArrayInputStream(json.getBytes("UTF-8"))
-
-        streams.value.log.info(s"Deploying ${name.value} to $env ...")
+        streams.value.log.info(s"Deploying ${name.value} as $appId to $env ...")
         streams.value.log.info(json)
         if (marathon("task", "list", appId).!!.contains(name.value))
           marathon("app", "update", "--force", appId) #< inputStream ! streams.value.log

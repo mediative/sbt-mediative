@@ -58,49 +58,11 @@ object MediativeChronosPlugin extends AutoPlugin {
   )
 
   def chronosSettings(env: Configuration) =
+    MediativeDeployPlugin.deploySettings(env, "job") ++
     inConfig(env)(Seq(
-      deployTemplate := ConfigFactory.parseResources(getClass, "chronos-template.conf"),
-      deployConfig := {
-        val dockerImage = dockerAlias.value.copy(tag = Some((version in deploy).value)).versioned
-
-        def envVar(name: String) = sys.env.get(name)
-        def branch = ("git symbolic-ref -q --short HEAD" #|| "git rev-parse HEAD").!!.trim
-        val ciInfo =
-          Seq(
-            envVar("TEAMCITY_PROJECT_NAME").orElse(envVar("USER")).getOrElse(name.value),
-            envVar("TEAMCITY_BUILDCONF_NAME").getOrElse(branch),
-            envVar("BUILD_NUMBER").getOrElse(java.time.LocalDateTime.now.toString)
-          ).mkString(":")
-
-        ConfigFactory.parseString(s"""
-          deploy.environment = "$env"
-          job {
-            deploy.environment = "$env"
-            deploy.info = "${version.value} by $ciInfo"
-          }
-        """)
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
-          .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-          .resolve() // Resolve before extracting the job sub-config
-          .getConfig("job")
-          .withFallback(ConfigFactory.parseString(s"""
-            name = "${name.value}"
-            version = "${version.value}"
-            docker.image = "${dockerImage}"
-            developer.email = "${developers.value.headOption.map(_.email).getOrElse("")}"
-            developer.name = "${developers.value.headOption.map(_.name).getOrElse("")}"
-          """))
-          .resolve()
-      },
-      version in deploy := {
-        env match {
-          case DeployEnvironment.Production => version.value
-          case _ => s"$env-latest"
-        }
-      },
-      publish in deploy := publishDockerImage.value,
       deploy := {
         val _ = (publish in deploy).value
+        val ensureJsonGeneratedFromConfigIsValid = deployJson.value
         val chronos = Credentials.toDirect(credentials.value.head)
 
         def http(server: DirectCredentials, path: String, transform: HttpRequest => HttpRequest = identity): String = {
@@ -120,11 +82,6 @@ object MediativeChronosPlugin extends AutoPlugin {
           }
         }
 
-        def toJson(config: ConfigObject): String = {
-          val opts = ConfigRenderOptions.defaults.setJson(true).setOriginComments(false).setComments(false)
-          config.render(opts)
-        }
-
         val buildConf = deployConfig.value
         val currentJson = http(chronos, s"/scheduler/jobs/search?name=${buildConf.getString("name")}")
         val currentConf = ConfigFactory.parseString(s"{ current = $currentJson }").getObjectList("current") match {
@@ -141,9 +98,9 @@ object MediativeChronosPlugin extends AutoPlugin {
         val nextConf = template
           .resolveWith(buildConf)
           .withFallback(currentConf)
-        val json = toJson(nextConf.root)
+        val json = MediativeDeployPlugin.toJson(nextConf.root)
 
-        if (json == toJson(currentConf)) {
+        if (json == MediativeDeployPlugin.toJson(currentConf)) {
           streams.value.log.info(s"Job ${name.value} is up-to-date in (${chronos.realm}) ${chronos.host} ...")
           streams.value.log.info(json)
         } else {
