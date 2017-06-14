@@ -59,16 +59,24 @@ object MediativeMarathonPlugin extends AutoPlugin {
         val inputStream = new java.io.ByteArrayInputStream(json.getBytes("UTF-8"))
 
         def marathon(args: String*): ProcessBuilder = {
-          Process(Seq(dcosCli.value.getAbsolutePath, "marathon") ++ args.toSeq, None, (envVars in deploy).value.toSeq: _*)
+          val command = dcosCli.value.getAbsolutePath :: "marathon" :: args.toList
+          streams.value.log.info(s"Running: ${command.mkString(" ")}")
+          Process(command, None, (envVars in deploy).value.toSeq: _*)
         }
 
         streams.value.log.info(s"Deploying ${name.value} as $appId to $env ...")
         streams.value.log.info(json)
-        if (marathon("task", "list", appId).!!.contains(name.value))
-          marathon("app", "update", "--force", appId) #< inputStream ! streams.value.log
-        else
-          marathon("app", "add") #< inputStream ! streams.value.log
-        ()
+        val exitCode =
+          if (marathon("app", "show", appId).! == 0)
+            marathon("app", "update", appId) #< inputStream ! streams.value.log
+          else
+            marathon("app", "add") #< inputStream ! streams.value.log
+
+        if (exitCode != 0) {
+          val error = s"Deployment of $appId failed with code $exitCode"
+          streams.value.log.error(error)
+          throw new RuntimeException(error)
+        }
       }
     ))
 }

@@ -141,14 +141,14 @@ object MediativeDeployPlugin extends AutoPlugin {
 
       ConfigFactory.parseString(s"""
           deploy.environment = "$env"
-          job {
+          $service {
             deploy.environment = "$env"
             deploy.info = "${version.value} by $ciInfo"
           }
         """)
         .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
         .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-        .resolve() // Resolve before extracting the job sub-config
+        .resolve() // Resolve before extracting the service sub-config
         .getConfig(service)
         .withFallback(ConfigFactory.parseString(s"""
           name = "${name.value}"
