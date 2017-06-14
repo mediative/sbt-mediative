@@ -7,9 +7,11 @@ Mediative SBT projects.
 
 To use the plugins add the following to `project/plugins.sbt`:
 
-    resolvers += Resolver.url("mediative:sbt-plugins", url("https://dl.bintray.com/mediative/sbt-plugins"))(Resolver.ivyStylePatterns)
-    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.2")
-    addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.2")
+```sbt
+resolvers += Resolver.bintrayIvyRepo("mediative", "sbt-plugins")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.2")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.2")
+```
 
 The `sbt-mediative-oss` plugin provides the command `bootstrap-project` to
 help quickly setup a new project:

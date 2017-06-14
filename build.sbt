@@ -31,7 +31,7 @@ lazy val devops = project.configure(plugin)
     libraryDependencies += "org.scalaj" %% "scalaj-http" % "2.3.0",
     libraryDependencies += "com.typesafe" % "config" % "1.3.1",
     addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M8"),
-    resolvers += Resolver.url("fonseca-sbt-plugins", url("https://dl.bintray.com/fonseca/sbt-plugins"))(Resolver.ivyStylePatterns),
+    resolvers += Resolver.bintrayIvyRepo("fonseca", "sbt-plugins"),
     addSbtPlugin("io.github.jonas" % "sbt-dcos" % "0.1.1")
   )
 

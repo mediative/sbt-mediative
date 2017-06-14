@@ -43,7 +43,7 @@ object MediativeMarathonPlugin extends AutoPlugin {
   override def requires = MediativeDeployPlugin && DCOSPlugin
   override def projectSettings: Seq[Setting[_]] = Def.settings(
     // To bring in sbt-dcos
-    resolvers += Resolver.url("fonseca:sbt-plugins", url("https://dl.bintray.com/fonseca/sbt-plugins"))(Resolver.ivyStylePatterns),
+    resolvers += Resolver.bintrayIvyRepo("fonseca", "sbt-plugins"),
     marathonSettings(DeployEnvironment.Production),
     marathonSettings(DeployEnvironment.QA),
     marathonSettings(DeployEnvironment.Staging)
