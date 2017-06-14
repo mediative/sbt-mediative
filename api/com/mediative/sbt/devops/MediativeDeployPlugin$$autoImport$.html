@@ -221,6 +221,19 @@
       </span>
       </h4>
       
+    </li><li name="com.mediative.sbt.devops.MediativeDeployPlugin.autoImport#deployJson" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="deployJson:sbt.TaskKey[String]"></a>
+      <a id="deployJson:TaskKey[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deployJson</span><span class="result">: <span class="extype" name="sbt.TaskKey">TaskKey</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      
     </li><li name="com.mediative.sbt.devops.MediativeDeployPlugin.autoImport#deployTemplate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="deployTemplate:sbt.TaskKey[com.typesafe.config.Config]"></a>
       <a id="deployTemplate:TaskKey[Config]"></a>
@@ -370,7 +383,7 @@
       </span>
       </h4>
       <p class="shortcomment cmt">Promote a Docker image from one environment to another.</p><div class="fullcomment"><div class="comment cmt"><p>Promote a Docker image from one environment to another.</p><p>To promote from QA (using the <code>qa-latest</code> Docker tag) to production:</p><pre>.settings(
-deployPreparation in DeployEnvironment.Production := promoteDockerImage(DeployEnvironment.QA)
+publish in (DeployEnvironment.Production, deploy) := promoteDockerImage(DeployEnvironment.QA)
 )</pre><p>The Docker tag of the promoted image is read from the <code>BUILD_NUMBER</code>
 environment variable if it exists. Else the project version is used.
 </p></div></div>
@@ -387,7 +400,7 @@ environment variable if it exists. Else the project version is used.
       </span>
       </h4>
       <p class="shortcomment cmt">Build and publish a Docker image.</p><div class="fullcomment"><div class="comment cmt"><p>Build and publish a Docker image.</p><p>To deploy a newly build Docker image to QA:</p><pre>.settings(
-deployPreparation in DeployEnvironment.QA := publishDockerImage.value
+publish in (DeployEnvironment.QA, deploy) := publishDockerImage.value
 )</pre></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
