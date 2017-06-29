@@ -9,8 +9,8 @@ To use the plugins add the following to `project/plugins.sbt`:
 
 ```sbt
 resolvers += Resolver.bintrayIvyRepo("mediative", "sbt-plugins")
-addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.2")
-addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.2")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.7")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.7")
 ```
 
 The `sbt-mediative-oss` plugin provides the command `bootstrap-project` to
@@ -37,7 +37,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute.
 
 To release version `x.y.z` run:
 
-    $ sbt release -Dversion=x.y.z
+    $ sbt -Dversion=x.y.z release
 
 This will take care of running tests, tagging and publishing JARs and API docs.
 
