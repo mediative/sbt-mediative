@@ -17,10 +17,10 @@ lazy val core = project.configure(plugin)
 lazy val oss = project.configure(plugin)
   .enablePlugins(MediativeBintrayPlugin)
   .settings(
-    addSbtPlugin("com.typesafe.sbt"  % "sbt-site"    % "1.2.0"),
+    addSbtPlugin("com.typesafe.sbt"  % "sbt-site"    % "1.2.1"),
     addSbtPlugin("com.typesafe.sbt"  % "sbt-ghpages" % "0.6.0"),
     addSbtPlugin("com.eed3si9n"      % "sbt-unidoc"  % "0.4.0"),
-    addSbtPlugin("me.lessis"         % "bintray-sbt" % "0.3.0"),
+    addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.4.0"),
     addSbtPlugin("de.heikoseeberger" % "sbt-header"  % "1.5.0")
   )
   .dependsOn(core)
@@ -30,9 +30,9 @@ lazy val devops = project.configure(plugin)
   .settings(
     libraryDependencies += "org.scalaj" %% "scalaj-http" % "2.3.0",
     libraryDependencies += "com.typesafe" % "config" % "1.3.1",
-    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M8"),
+    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0"),
     resolvers += Resolver.bintrayIvyRepo("fonseca", "sbt-plugins"),
-    addSbtPlugin("io.github.jonas" % "sbt-dcos" % "0.1.1")
+    addSbtPlugin("io.github.jonas" % "sbt-dcos" % "0.1.2")
   )
 
 lazy val teamcity = project.configure(plugin)
