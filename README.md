@@ -43,7 +43,7 @@ This will take care of running tests, tagging and publishing JARs and API docs.
 
 ## License
 
-Copyright 2016 Mediative
+Copyright 2017 Mediative
 
 Licensed under the Apache License, Version 2.0. See LICENSE file for terms and
 conditions for use, reproduction, and distribution.
