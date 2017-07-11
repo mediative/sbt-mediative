@@ -9,8 +9,8 @@ To use the plugins add the following to `project/plugins.sbt`:
 
 ```sbt
 resolvers += Resolver.bintrayIvyRepo("mediative", "sbt-plugins")
-addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.7")
-addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.7")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-core" % "0.5.8")
+addSbtPlugin("com.mediative.sbt" % "sbt-mediative-oss" % "0.5.8")
 ```
 
 The `sbt-mediative-oss` plugin provides the command `bootstrap-project` to
