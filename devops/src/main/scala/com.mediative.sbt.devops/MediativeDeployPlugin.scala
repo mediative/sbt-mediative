@@ -139,6 +139,8 @@ object MediativeDeployPlugin extends AutoPlugin {
           envVar("BUILD_NUMBER").getOrElse(java.time.LocalDateTime.now.toString)
         ).mkString(":")
 
+      val resolveOptions = ConfigResolveOptions.defaults().setAllowUnresolved(true)
+
       ConfigFactory.parseString(s"""
           deploy.environment = "$env"
           $service {
@@ -148,7 +150,7 @@ object MediativeDeployPlugin extends AutoPlugin {
         """)
         .withFallback(ConfigFactory.parseFile(baseDirectory.value / s"src/main/resources/$env.conf"))
         .withFallback(ConfigFactory.parseFile(baseDirectory.value / "src/main/resources/application.conf"))
-        .resolve() // Resolve before extracting the service sub-config
+        .resolve(resolveOptions) // Resolve before extracting the service sub-config
         .getConfig(service)
         .withFallback(ConfigFactory.parseString(s"""
           name = "${name.value}"
